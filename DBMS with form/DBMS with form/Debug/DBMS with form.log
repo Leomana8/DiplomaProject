@@ -1,0 +1,21 @@
+﻿Сборка начата 09.12.2014 18:12:03.
+     1>Проект "D:\Docyment\1UNIVERSITY\Diploma\Programm\DBMS with form\DBMS with form\DBMS with form.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.2.1\5.2.1\msvc2012\include /I.\GeneratedFiles\Debug /IC:\Qt\Qt5.2.1\5.2.1\msvc2012\include\QtCore /IC:\Qt\Qt5.2.1\5.2.1\msvc2012\include\QtGui /IC:\Qt\Qt5.2.1\5.2.1\msvc2012\include\QtSql /IC:\Qt\Qt5.2.1\5.2.1\msvc2012\include\QtWidgets /ZI /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_SQL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt dbmswithform.cpp
+         dbmswithform.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Docyment\1UNIVERSITY\Diploma\Programm\DBMS with form\Win32\Debug\\DBMS with form.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.2.1\5.2.1\msvc2012\lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Sqld.lib Qt5Widgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Docyment\1UNIVERSITY\Diploma\Programm\DBMS with form\Win32\Debug\DBMS with form.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Docyment\1UNIVERSITY\Diploma\Programm\DBMS with form\Win32\Debug\DBMS with form.lib" /MACHINE:X86 /SAFESEH Debug\dbmswithform.obj
+         Debug\DbmsElementsOfStructure.obj
+         Debug\editdialog.obj
+         Debug\moc_dbmswithform.obj
+         Debug\moc_editdialog.obj
+         Debug\moc_searchdialog.obj
+         Debug\qrc_dbmswithform.obj
+         Debug\main.obj
+         Debug\searchdialog.obj
+         DBMS with form.vcxproj -> D:\Docyment\1UNIVERSITY\Diploma\Programm\DBMS with form\Win32\Debug\DBMS with form.exe
+     1>Построение проекта "D:\Docyment\1UNIVERSITY\Diploma\Programm\DBMS with form\DBMS with form\DBMS with form.vcxproj" завершено (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:05.90
