@@ -1,4 +1,4 @@
-#include <QtWidgets/QMainWindow>
+п»ї#include <QtWidgets/QMainWindow>
 #include "ui_search.h"
 #include "DbmsElementsOfStructure.h"
 
@@ -25,7 +25,7 @@ public:
 private:
 	Ui::DialogSearch ui;
 	int model;
-	// наименования классов
+	// РЅР°РёРјРµРЅРѕРІР°РЅРёСЏ РєР»Р°СЃСЃРѕРІ
 	QStringList namesClass;
 	QMap<QString, Category> nameCategory; 
 

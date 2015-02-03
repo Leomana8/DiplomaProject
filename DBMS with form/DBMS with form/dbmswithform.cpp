@@ -1,4 +1,4 @@
-#include "dbmswithform.h"
+п»ї#include "dbmswithform.h"
 #include <QMessageBox>
 
 
@@ -8,7 +8,6 @@ DBMSwithform::DBMSwithform(QWidget *parent)
 	
 	ui.setupUi(this);
 	timerInfo = new QTimer();
-	//dbPath = "D:/Docyment/1UNIVERSITY/Diploma/Programm/CreateDataBase/CreateDataBase/db_elements_of_structures.sqlite";
 	dbPath = "db_elements_of_structures.sqlite";
 	DbElementsOfStructure::connect(dbPath);
 	typeUser = EXPERT;
@@ -41,7 +40,6 @@ DBMSwithform::DBMSwithform(QWidget *parent)
 	connect( ui.tableViewConceptual, SIGNAL(customContextMenuRequested(const QPoint&)),this, SLOT(showContextMenu(const QPoint&)));
 	connect( ui.radioButton_insertC, SIGNAL(toggled(bool)), this, SLOT(showTableConceptualQueries(bool)));
 	connect( ui.comboBox_classInfological, SIGNAL(currentIndexChanged(int)), this, SLOT(changedClassInfological(int)) );
-	//connect( ui.radioButton_new, SIGNAL(clicked(bool)), this, SLOT(changedClassInfological(int)) );
 	connect( ui.comboBox_tableInfological, SIGNAL(currentIndexChanged(int)), this, SLOT(showTableInfological(int)) );
 	connect( ui.tableViewInfological, SIGNAL(customContextMenuRequested(const QPoint&)),this, SLOT(showContextMenu(const QPoint&)));
 	connect( ui.radioButton_insertInf, SIGNAL(toggled(bool)), this, SLOT(showTableInfologicalQueries(bool)));
@@ -57,7 +55,7 @@ DBMSwithform::~DBMSwithform()
 	DbElementsOfStructure::disconnect();
 }
 
-// изменение типа пользователя
+// РёР·РјРµРЅРµРЅРёРµ С‚РёРїР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 void DBMSwithform::changedTypeUser(bool expert)
 {
 	if(expert)
@@ -69,7 +67,7 @@ void DBMSwithform::changedTypeUser(bool expert)
 		typeUser = USER;
 	}
 }
-// отобразить видимую таблицу
+// РѕС‚РѕР±СЂР°Р·РёС‚СЊ РІРёРґРёРјСѓСЋ С‚Р°Р±Р»РёС†Сѓ
 void DBMSwithform::showTable(int)
 {
 	if(ui.ViewTablesInitial->isVisible())
@@ -104,7 +102,7 @@ void DBMSwithform::showTable(int)
 	}
 }
 
-// отобразить контекстное меню таблицы
+// РѕС‚РѕР±СЂР°Р·РёС‚СЊ РєРѕРЅС‚РµРєСЃС‚РЅРѕРµ РјРµРЅСЋ С‚Р°Р±Р»РёС†С‹
 void DBMSwithform::showContextMenu(const QPoint& pos)
 {
 	QTableView *cur;
@@ -126,10 +124,10 @@ void DBMSwithform::showContextMenu(const QPoint& pos)
 	selectedCode = cur->model()->index(selectedRow, 1).data().toString();
 	selectedName = cur->model()->index(selectedRow, 2).data().toString();
 	tabMenu.clear();
-	tabMenu.addAction(QStringLiteral("Редактировать"));
+	tabMenu.addAction(QStringLiteral("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"));
 	if(typeUser == EXPERT)
 	{
-		tabMenu.addAction(QStringLiteral("Удалить"));
+		tabMenu.addAction(QStringLiteral("РЈРґР°Р»РёС‚СЊ"));
 	}
 	tabMenu.exec(globalPos);
 
@@ -140,7 +138,7 @@ void DBMSwithform::selectedTabMenu(QAction * item)
 	
 	int model = ui.tabWidget_selectModel->currentIndex();
 	Category c = ATTRIBUTES;
-	if(item->text() == QStringLiteral("Удалить"))
+	if(item->text() == QStringLiteral("РЈРґР°Р»РёС‚СЊ"))
 	{
 		DbElementsOfStructure* db;
 		if(model == 0)
@@ -172,9 +170,8 @@ void DBMSwithform::selectedTabMenu(QAction * item)
 			showTableInfological(ui.comboBox_tableInfological->currentIndex());
 		}	
 	}
-	if(item->text() == QStringLiteral("Редактировать"))
+	if(item->text() == QStringLiteral("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"))
 	{
-		//ui.tabl
 		EditDialog dialogEdit(selectedName,selectedCode,this);
 		QString newName;
 		if(dialogEdit.exec())
@@ -209,14 +206,14 @@ void DBMSwithform::selectedTabMenu(QAction * item)
 	
 }
 
-// нажата кнопка для удаления запроса пользователя
+// РЅР°Р¶Р°С‚Р° РєРЅРѕРїРєР° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ Р·Р°РїСЂРѕСЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 void DBMSwithform::bDelete_clicked()
 {
 	QString id = QObject::sender()->property("id").toString();
 	DbElementsOfStructure::deleteRecord(id);
 	showTable(0);
 }
-// нажата кнопка для подверждения запроса пользователя
+// РЅР°Р¶Р°С‚Р° РєРЅРѕРїРєР° РґР»СЏ РїРѕРґРІРµСЂР¶РґРµРЅРёСЏ Р·Р°РїСЂРѕСЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 void DBMSwithform::bConfirm_clicked()
 {
 	QString id = QObject::sender()->property("id").toString();
@@ -224,7 +221,7 @@ void DBMSwithform::bConfirm_clicked()
 	showTable(0);
 }
 
-//  НАЧАЛЬНАЯ МОДЕЛЬ
+//  РќРђР§РђР›Р¬РќРђРЇ РњРћР”Р•Р›Р¬
 
 void DBMSwithform::initializeInitialModel()
 {
@@ -238,7 +235,7 @@ void DBMSwithform::initializeInitialModel()
 }
 
 
-// при изменении кода группы
+// РїСЂРё РёР·РјРµРЅРµРЅРёРё РєРѕРґР° РіСЂСѓРїРїС‹
 void DBMSwithform::changedGroupInitial(int indx)
 {
 	DbInitialModel db;
@@ -246,7 +243,7 @@ void DBMSwithform::changedGroupInitial(int indx)
 	ui.lineEdit_codeInGroupInitial->setText(codeInGroup);
 }
 
-// генерация кода
+// РіРµРЅРµСЂР°С†РёСЏ РєРѕРґР°
 void DBMSwithform::on_pButton_GenerateCodeInitial_clicked()
 {
 	DbInitialModel db;
@@ -254,12 +251,12 @@ void DBMSwithform::on_pButton_GenerateCodeInitial_clicked()
 	ui.lineEdit_codeInitial->setText(code);
 }
 
-// добавить запись в начальную модель
+// РґРѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ РІ РЅР°С‡Р°Р»СЊРЅСѓСЋ РјРѕРґРµР»СЊ
 void DBMSwithform::on_pButton_AddInitial_clicked()
 {
 	if(ui.lineEdit_nameInitial->text() == "")
 	{
-		ui.label_infoInitial->setText(QStringLiteral("Заполните наименование"));
+		ui.label_infoInitial->setText(QStringLiteral("Р—Р°РїРѕР»РЅРёС‚Рµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 		ui.label_infoInitial->setStyleSheet("color: rgb(50, 0, 70)");
 		timerInfo->start(5000);
 		return;
@@ -273,13 +270,13 @@ void DBMSwithform::on_pButton_AddInitial_clicked()
 		);
 	if(res == -2)
 	{
-		ui.label_infoInitial->setText(QStringLiteral("Запрос с таким кодом существует"));
+		ui.label_infoInitial->setText(QStringLiteral("Р—Р°РїСЂРѕСЃ СЃ С‚Р°РєРёРј РєРѕРґРѕРј СЃСѓС‰РµСЃС‚РІСѓРµС‚"));
 		ui.label_infoInitial->setStyleSheet("color: rgb(50, 0, 70)");
 		timerInfo->start(5000);
 	}
 	if(res == 0)
 	{
-		ui.label_infoInitial->setText(QStringLiteral("Запись добавлена"));
+		ui.label_infoInitial->setText(QStringLiteral("Р—Р°РїРёСЃСЊ РґРѕР±Р°РІР»РµРЅР°"));
 		ui.label_infoInitial->setStyleSheet("color: rgb(0, 50, 70)");
 		timerInfo->start(5000);
 		ui.lineEdit_nameInitial->clear();
@@ -289,7 +286,7 @@ void DBMSwithform::on_pButton_AddInitial_clicked()
 
 }
 
-// показать таблицу начального уровня
+// РїРѕРєР°Р·Р°С‚СЊ С‚Р°Р±Р»РёС†Сѓ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 void DBMSwithform::showTableInitial()
 {
 	DbInitialModel db;
@@ -311,7 +308,7 @@ void DBMSwithform::showTableInitial()
 	
 }
 
-// таблица запросов
+// С‚Р°Р±Р»РёС†Р° Р·Р°РїСЂРѕСЃРѕРІ
 void DBMSwithform::showTableInitialQueries(bool insert)
 {
 	DbInitialModel db;
@@ -329,7 +326,7 @@ void DBMSwithform::showTableInitialQueries(bool insert)
 		m = db.getTableQueriesEdit();
 	}
 	ui.tableViewInitial_queries->setModel(m);
-	// добавление кнопок к строкам если выбран эксперт
+	// РґРѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРѕРє Рє СЃС‚СЂРѕРєР°Рј РµСЃР»Рё РІС‹Р±СЂР°РЅ СЌРєСЃРїРµСЂС‚
 	if (typeUser == EXPERT)
 	{
 		int count = m->rowCount();
@@ -338,10 +335,10 @@ void DBMSwithform::showTableInitialQueries(bool insert)
 		m->setHeaderData(m->columnCount()-2, Qt::Horizontal, (""));
 		while(--count + 1)
 		{
-			QPushButton *bConfirm = new QPushButton(QStringLiteral("Подтвердить"));
-			bConfirm->setProperty("id", m->data(m->index(count, 0))); // запись id записи в кнопку
+			QPushButton *bConfirm = new QPushButton(QStringLiteral("РџРѕРґС‚РІРµСЂРґРёС‚СЊ"));
+			bConfirm->setProperty("id", m->data(m->index(count, 0))); // Р·Р°РїРёСЃСЊ id Р·Р°РїРёСЃРё РІ РєРЅРѕРїРєСѓ
 			connect( bConfirm, SIGNAL(clicked()), this, SLOT(bConfirm_clicked()));
-			QPushButton *bDelete = new QPushButton(QStringLiteral("Удалить")); 
+			QPushButton *bDelete = new QPushButton(QStringLiteral("РЈРґР°Р»РёС‚СЊ")); 
 			connect( bDelete, SIGNAL(clicked()), this, SLOT(bDelete_clicked()));
 			bDelete->setProperty("id", m->data(m->index(count, 0)));
 			QModelIndex curIndx = m->index(count,m->columnCount()-2);
@@ -361,7 +358,7 @@ void DBMSwithform::showTableInitialQueries(bool insert)
 	}
 	ui.tableViewInitial_queries->show();
 }
-// Поиск
+// РџРѕРёСЃРє
 void DBMSwithform::on_pButton_SearchInitial_clicked()
 {
 	if (!findDialog) {
@@ -394,7 +391,7 @@ void DBMSwithform::showFindTableInitial(QAbstractTableModel* mF)
 
 
 
-// КОНЦЕПТУАЛЬНАЯ МОДЕЛЬ
+// РљРћРќР¦Р•РџРўРЈРђР›Р¬РќРђРЇ РњРћР”Р•Р›Р¬
 
 void DBMSwithform::initializeConceptualModel()
 {
@@ -404,7 +401,7 @@ void DBMSwithform::initializeConceptualModel()
 	ui.comboBox_codeInGroupConceptual->setVisible(false);
 }
 
-// отобразить таблицу
+// РѕС‚РѕР±СЂР°Р·РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ
 void DBMSwithform::showTableConceptual(int indx)
 {
 	DbConceptualModel db;
@@ -558,7 +555,7 @@ void DBMSwithform::on_pButton_AddConceptual_clicked()
 	ConceptualItem item = getConceptualItem();
 	if(item.name == "")
 	{
-		ui.label_infoConceptual->setText(QStringLiteral("Заполните наименование"));
+		ui.label_infoConceptual->setText(QStringLiteral("Р—Р°РїРѕР»РЅРёС‚Рµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 		ui.label_infoConceptual->setStyleSheet("color: rgb(50, 0, 70)");
 		timerInfo->start(5000);
 		return;
@@ -570,7 +567,7 @@ void DBMSwithform::on_pButton_AddConceptual_clicked()
 		res = db.insertRecord(typeUser, item.idParametr, item.extraCode, item.name);
 		if(res == -2)
 		{
-			ui.label_infoConceptual->setText(QStringLiteral("Параметра не существует")); 
+			ui.label_infoConceptual->setText(QStringLiteral("РџР°СЂР°РјРµС‚СЂР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚")); 
 			ui.label_infoConceptual->setStyleSheet("color: rgb(50, 0, 70)");
 		}
 	}
@@ -587,12 +584,12 @@ void DBMSwithform::on_pButton_AddConceptual_clicked()
 
 		if(res == -2) 
 		{
-			ui.label_infoConceptual->setText(QStringLiteral("Недопустимый код группы")); 
+			ui.label_infoConceptual->setText(QStringLiteral("РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РєРѕРґ РіСЂСѓРїРїС‹")); 
 			ui.label_infoConceptual->setStyleSheet("color: rgb(50, 0, 70)");
 		}
 		if(res == -3)
 		{
-			ui.label_infoConceptual->setText(QStringLiteral("Недопустимый код в группе")); 
+			ui.label_infoConceptual->setText(QStringLiteral("РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РєРѕРґ РІ РіСЂСѓРїРїРµ")); 
 			ui.label_infoConceptual->setStyleSheet("color: rgb(50, 0, 70)");
 		}
 	}
@@ -600,25 +597,25 @@ void DBMSwithform::on_pButton_AddConceptual_clicked()
 	{
 	case 0:
 		{
-			ui.label_infoConceptual->setText(QStringLiteral("Запись добавлена"));
+			ui.label_infoConceptual->setText(QStringLiteral("Р—Р°РїРёСЃСЊ РґРѕР±Р°РІР»РµРЅР°"));
 			ui.label_infoConceptual->setStyleSheet("color: rgb(0, 50, 70)");
 			break;
 		}
 	case -4:
 		{
-			ui.label_infoConceptual->setText(QStringLiteral("Недопустимый дополнительный код")); 
+			ui.label_infoConceptual->setText(QStringLiteral("РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РєРѕРґ")); 
 			ui.label_infoConceptual->setStyleSheet("color: rgb(50, 0, 70)");
 			break;
 		}
 	case -5:
 		{
-			ui.label_infoConceptual->setText(QStringLiteral("Пустое имя")); 
+			ui.label_infoConceptual->setText(QStringLiteral("РџСѓСЃС‚РѕРµ РёРјСЏ")); 
 			ui.label_infoConceptual->setStyleSheet("color: rgb(50, 0, 70)");
 			break;
 		}
 	case -6:
 		{
-			ui.label_infoConceptual->setText(QStringLiteral("Запрос с таким кодом существует")); 
+			ui.label_infoConceptual->setText(QStringLiteral("Р—Р°РїСЂРѕСЃ СЃ С‚Р°РєРёРј РєРѕРґРѕРј СЃСѓС‰РµСЃС‚РІСѓРµС‚")); 
 			ui.label_infoConceptual->setStyleSheet("color: rgb(50, 0, 70)");
 			break;
 		}
@@ -675,7 +672,7 @@ void DBMSwithform::showTableConceptualQueries(bool insert)
 	}
 	ui.tableViewConceptual_queries->setModel(m);
 	QHeaderView *header = ui.tableViewConceptual_queries->horizontalHeader();
-	// добавление кнопок к строкам если выбран эксперт
+	// РґРѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРѕРє Рє СЃС‚СЂРѕРєР°Рј РµСЃР»Рё РІС‹Р±СЂР°РЅ СЌРєСЃРїРµСЂС‚
 	if (typeUser == EXPERT)
 	{
 		int count = m->rowCount();
@@ -685,10 +682,10 @@ void DBMSwithform::showTableConceptualQueries(bool insert)
 		
 		while(--count + 1)
 		{
-			QPushButton *bConfirm = new QPushButton(QStringLiteral("Подтвердить"));
-			bConfirm->setProperty("id", m->data(m->index(count, 0))); // запись id записи в кнопку
+			QPushButton *bConfirm = new QPushButton(QStringLiteral("РџРѕРґС‚РІРµСЂРґРёС‚СЊ"));
+			bConfirm->setProperty("id", m->data(m->index(count, 0))); // Р·Р°РїРёСЃСЊ id Р·Р°РїРёСЃРё РІ РєРЅРѕРїРєСѓ
 			connect( bConfirm, SIGNAL(clicked()), this, SLOT(bConfirm_clicked()));
-			QPushButton *bDelete = new QPushButton(QStringLiteral("Удалить")); 
+			QPushButton *bDelete = new QPushButton(QStringLiteral("РЈРґР°Р»РёС‚СЊ")); 
 			connect( bDelete, SIGNAL(clicked()), this, SLOT(bDelete_clicked()));
 			bDelete->setProperty("id", m->data(m->index(count, 0)));
 			QModelIndex curIndx = m->index(count,m->columnCount()-2);
@@ -710,7 +707,7 @@ void DBMSwithform::showTableConceptualQueries(bool insert)
 	ui.tableViewConceptual_queries->show();
 }
 
-// ИНФОЛОГИЧЕСКАЯ МОДЕЛЬ
+// РРќР¤РћР›РћР“РР§Р•РЎРљРђРЇ РњРћР”Р•Р›Р¬
 
 
 void DBMSwithform::initializeInfologicalModel()
@@ -772,7 +769,7 @@ void DBMSwithform::on_pButton_GenerateCodeInfological_clicked()
 
 	if (item.level <= 0)
 	{
-		ui.label_infoInfological->setText(QStringLiteral("Неверный уровень сложности"));
+		ui.label_infoInfological->setText(QStringLiteral("РќРµРІРµСЂРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ СЃР»РѕР¶РЅРѕСЃС‚Рё"));
 		ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 		timerInfo->start(5000);
 	}
@@ -786,13 +783,13 @@ void DBMSwithform::on_pButton_GenerateCodeInfological_clicked()
 		{
 			if (item.code_1.isEmpty())
 			{
-				ui.label_infoInfological->setText(QStringLiteral("Заполните код 1"));
+				ui.label_infoInfological->setText(QStringLiteral("Р—Р°РїРѕР»РЅРёС‚Рµ РєРѕРґ 1"));
 				ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 				return;
 			}
 			if (item.code_2.isEmpty())
 			{
-				ui.label_infoInfological->setText(QStringLiteral("Заполните код 2"));
+				ui.label_infoInfological->setText(QStringLiteral("Р—Р°РїРѕР»РЅРёС‚Рµ РєРѕРґ 2"));
 				ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 				return;
 			}
@@ -831,7 +828,7 @@ void DBMSwithform::on_pButton_AddInfological_clicked()
 	InfologicalItem item = getInfologicalItem();
 	if (item.level <= 0)
 	{
-		ui.label_infoInfological->setText(QStringLiteral("Неверный уровень сложности"));
+		ui.label_infoInfological->setText(QStringLiteral("РќРµРІРµСЂРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ СЃР»РѕР¶РЅРѕСЃС‚Рё"));
 		ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 	}
 	DbInfologicalModel db;
@@ -841,7 +838,7 @@ void DBMSwithform::on_pButton_AddInfological_clicked()
 		res = db.insertRecord(typeUser, item.type, item.level, item.c, item.idCategory);
 		if(res == -4)
 		{
-			ui.label_infoConceptual->setText(QStringLiteral("Категории не существует")); 
+			ui.label_infoConceptual->setText(QStringLiteral("РљР°С‚РµРіРѕСЂРёРё РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚")); 
 			ui.label_infoConceptual->setStyleSheet("color: rgb(50, 0, 70)");
 		}
 	}
@@ -849,20 +846,20 @@ void DBMSwithform::on_pButton_AddInfological_clicked()
 	{
 		if(item.name == "")
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Заполните наименование"));
+			ui.label_infoInfological->setText(QStringLiteral("Р—Р°РїРѕР»РЅРёС‚Рµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 			ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 			timerInfo->start(5000);
 			return;
 		}
 		if (item.code_1.isEmpty())
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Заполните код 1"));
+			ui.label_infoInfological->setText(QStringLiteral("Р—Р°РїРѕР»РЅРёС‚Рµ РєРѕРґ 1"));
 			ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 			return;
 		}
 		if (item.code_2.isEmpty())
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Заполните код 2"));
+			ui.label_infoInfological->setText(QStringLiteral("Р—Р°РїРѕР»РЅРёС‚Рµ РєРѕРґ 2"));
 			ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 			return;
 		}
@@ -878,12 +875,12 @@ void DBMSwithform::on_pButton_AddInfological_clicked()
 
 		if(res == -41) 
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Недопустимый код 1")); 
+			ui.label_infoInfological->setText(QStringLiteral("РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РєРѕРґ 1")); 
 			ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 		}
 		if(res == -42)
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Недопустимый код 2")); 
+			ui.label_infoInfological->setText(QStringLiteral("РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РєРѕРґ 2")); 
 			ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 		}
 	}
@@ -891,25 +888,25 @@ void DBMSwithform::on_pButton_AddInfological_clicked()
 	{
 	case 0:
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Запись добавлена"));
+			ui.label_infoInfological->setText(QStringLiteral("Р—Р°РїРёСЃСЊ РґРѕР±Р°РІР»РµРЅР°"));
 			ui.label_infoInfological->setStyleSheet("color: rgb(0, 50, 70)");
 			break;
 		}
 	case -2:
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Недопустимый тип")); 
+			ui.label_infoInfological->setText(QStringLiteral("РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ С‚РёРї")); 
 			ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 			break;
 		}
 	case -3:
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Недопустимый уровень")); 
+			ui.label_infoInfological->setText(QStringLiteral("РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ СѓСЂРѕРІРµРЅСЊ")); 
 			ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 			break;
 		}
 	case -6:
 		{
-			ui.label_infoInfological->setText(QStringLiteral("Запрос с таким кодом существует")); 
+			ui.label_infoInfological->setText(QStringLiteral("Р—Р°РїСЂРѕСЃ СЃ С‚Р°РєРёРј РєРѕРґРѕРј СЃСѓС‰РµСЃС‚РІСѓРµС‚")); 
 			ui.label_infoInfological->setStyleSheet("color: rgb(50, 0, 70)");
 			break;
 		}
@@ -965,7 +962,7 @@ void DBMSwithform::showTableInfologicalQueries(bool insert)
 		m = db.getTableQueriesEdit();
 	}
 	ui.tableViewInfological_queries->setModel(m);
-	// добавление кнопок к строкам если выбран эксперт
+	// РґРѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРѕРє Рє СЃС‚СЂРѕРєР°Рј РµСЃР»Рё РІС‹Р±СЂР°РЅ СЌРєСЃРїРµСЂС‚
 	if (typeUser == EXPERT)
 	{
 		int count = m->rowCount();
@@ -974,10 +971,10 @@ void DBMSwithform::showTableInfologicalQueries(bool insert)
 		m->setHeaderData(m->columnCount()-2, Qt::Horizontal, (""));
 		while(--count + 1)
 		{
-			QPushButton *bConfirm = new QPushButton(QStringLiteral("Подтвердить"));
-			bConfirm->setProperty("id", m->data(m->index(count, 0))); // запись id записи в кнопку
+			QPushButton *bConfirm = new QPushButton(QStringLiteral("РџРѕРґС‚РІРµСЂРґРёС‚СЊ"));
+			bConfirm->setProperty("id", m->data(m->index(count, 0))); // Р·Р°РїРёСЃСЊ id Р·Р°РїРёСЃРё РІ РєРЅРѕРїРєСѓ
 			connect( bConfirm, SIGNAL(clicked()), this, SLOT(bConfirm_clicked()));
-			QPushButton *bDelete = new QPushButton(QStringLiteral("Удалить")); 
+			QPushButton *bDelete = new QPushButton(QStringLiteral("РЈРґР°Р»РёС‚СЊ")); 
 			connect( bDelete, SIGNAL(clicked()), this, SLOT(bDelete_clicked()));
 			bDelete->setProperty("id", m->data(m->index(count, 0)));
 			QModelIndex curIndx = m->index(count,m->columnCount()-2);

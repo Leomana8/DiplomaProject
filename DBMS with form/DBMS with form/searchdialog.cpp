@@ -1,4 +1,4 @@
-#include "searchdialog.h"
+п»ї#include "searchdialog.h"
 #include <QSizePolicy>
 
 SearchDialog::SearchDialog(int m, QWidget *parent): QDialog(parent)
@@ -18,7 +18,7 @@ SearchDialog::SearchDialog(int m, QWidget *parent): QDialog(parent)
 SearchDialog::~SearchDialog()
 {
 }
-// инициировать нажатие кнопки Поиск
+// РёРЅРёС†РёРёСЂРѕРІР°С‚СЊ РЅР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РџРѕРёСЃРє
 void SearchDialog::pushFind()
 {
 	on_pButton_find_clicked();
@@ -33,7 +33,7 @@ void SearchDialog::initializeInitialModel()
 	ui.groupBox_4->resize(ui.groupBox_4->size().width(), 68);
 	this->resize(this->size().width(), 270);
 	DbInitialModel db;
-	ui.comboBox_group->addItem(QStringLiteral("не важно"));
+	ui.comboBox_group->addItem(QStringLiteral("РЅРµ РІР°Р¶РЅРѕ"));
 	QList<QPair<QString, QVariant>> codesGroup = db.getGroupCodes();
 	QPair<QString, QVariant> var;
 	foreach(var, codesGroup)
@@ -131,7 +131,7 @@ void SearchDialog::findInitial()
 	Item item = getItem();
 	if(ui.radioButton_name->isChecked())
 	{
-		// поиск по наименованию
+		// РїРѕРёСЃРє РїРѕ РЅР°РёРјРµРЅРѕРІР°РЅРёСЋ
 		
 		if(ui.comboBox_group->currentIndex() == 0)
 		{
@@ -144,7 +144,7 @@ void SearchDialog::findInitial()
 	}
 	else
 	{
-		// поиск по коду
+		// РїРѕРёСЃРє РїРѕ РєРѕРґСѓ
 		find = db.findCode(item.text, item.t);
 	}
 
@@ -158,22 +158,22 @@ void SearchDialog::findConceptual()
 	Item item = getItem();
 	if(ui.radioButton_name->isChecked())
 	{
-		// поиск по наименованию
+		// РїРѕРёСЃРє РїРѕ РЅР°РёРјРµРЅРѕРІР°РЅРёСЋ
 		if(ui.radioButton_class1->isChecked())
 		{
-			// по классификаторам
+			// РїРѕ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР°Рј
 			find = db.findText(item.text, item.t, item.c, item.codeGroup.toInt(), item.codeInGroup.toInt());		
 		}
 		else
 		{
-			// по нескольким классам
+			// РїРѕ РЅРµСЃРєРѕР»СЊРєРёРј РєР»Р°СЃСЃР°Рј
 			find = db.findText(item.text, item.t, item.listClass);
 			
 		}
 	}
 	else
 	{
-		// поиск по коду
+		// РїРѕРёСЃРє РїРѕ РєРѕРґСѓ
 		find = db.findCode(item.text, item.t);
 	}
 
@@ -187,21 +187,21 @@ void SearchDialog::findInfological()
 	Item item = getItem();
 	if(ui.radioButton_name->isChecked())
 	{
-		// поиск по наименованию
+		// РїРѕРёСЃРє РїРѕ РЅР°РёРјРµРЅРѕРІР°РЅРёСЋ
 		if(ui.radioButton_class1->isChecked())
 		{
-			// по классификаторам
+			// РїРѕ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР°Рј
 			find = db.findText(item.text, item.t, item.c, item.listType, item.codeGroup.toString(), item.codeInGroup.toString(), item.level);	
 		}
 		else
 		{
-			// по нескольким классам
+			// РїРѕ РЅРµСЃРєРѕР»СЊРєРёРј РєР»Р°СЃСЃР°Рј
 			find = db.findText(item.text, item.t, item.listClass, item.listType, item.level);
 		}
 	}
 	else
 	{
-		// поиск по коду
+		// РїРѕРёСЃРє РїРѕ РєРѕРґСѓ
 		find = db.findCode(item.text, item.t);
 	}
 
@@ -221,7 +221,7 @@ void SearchDialog::changedClass(int indx)
 	{
 		db = new DbInfologicalModel();
 	}
-	ui.comboBox_group->addItem(QStringLiteral("не важно"));
+	ui.comboBox_group->addItem(QStringLiteral("РЅРµ РІР°Р¶РЅРѕ"));
 	QList<QPair<QString, QVariant>> codesGroup = db->getGroupCodes(c);
 	QPair<QString, QVariant> var;
 	foreach(var, codesGroup)	
@@ -244,7 +244,7 @@ void SearchDialog::changedCodeGroup(int indx)
 	{
 		db = new DbInfologicalModel();
 	}
-	ui.comboBox_codeInGroup->addItem(QStringLiteral("не важно"));
+	ui.comboBox_codeInGroup->addItem(QStringLiteral("РЅРµ РІР°Р¶РЅРѕ"));
 	QList<QVariant> codes = db->getInGroupCodes(ui.comboBox_group->currentData(), c);
 	foreach(QVariant var, codes)	
 	{

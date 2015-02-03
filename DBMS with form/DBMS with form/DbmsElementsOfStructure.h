@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <QtSql>
 
@@ -29,38 +29,38 @@ class DbElementsOfStructure
 public:
 	DbElementsOfStructure ();
 	virtual ~DbElementsOfStructure();
-	static int connect(QString path); // подключение к БД
+	static int connect(QString path); // РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
 	static void disconnect();
-	// наименования классов в правильном порядке
+	// РЅР°РёРјРµРЅРѕРІР°РЅРёСЏ РєР»Р°СЃСЃРѕРІ РІ РїСЂР°РІРёР»СЊРЅРѕРј РїРѕСЂСЏРґРєРµ
 	static QStringList getSortClassNames(); 
-	// набор соответствий наименований классов к категориям
+	// РЅР°Р±РѕСЂ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёР№ РЅР°РёРјРµРЅРѕРІР°РЅРёР№ РєР»Р°СЃСЃРѕРІ Рє РєР°С‚РµРіРѕСЂРёСЏРј
 	static QMap<QString, Category> getCategoryNames();
-	// получить таблицу типов, формат возвращаемых данных: code[QChar], name[string]
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ С‚РёРїРѕРІ, С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С…: code[QChar], name[string]
 	QMap<QString, QChar> getTypes();
-	// получить справочник классификатора кодов групп для категорий , формат возвращаемых данных: полное наименование[QString], код[int]
+	// РїРѕР»СѓС‡РёС‚СЊ СЃРїСЂР°РІРѕС‡РЅРёРє РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР° РєРѕРґРѕРІ РіСЂСѓРїРї РґР»СЏ РєР°С‚РµРіРѕСЂРёР№ , С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С…: РїРѕР»РЅРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ[QString], РєРѕРґ[int]
 	QList<QPair<QString, int>> getClassifierCodeGroup(Category table = ATTRIBUTES); 
-    // получить классификацию кодов в группе для категории "Компоненты"
+    // РїРѕР»СѓС‡РёС‚СЊ РєР»Р°СЃСЃРёС„РёРєР°С†РёСЋ РєРѕРґРѕРІ РІ РіСЂСѓРїРїРµ РґР»СЏ РєР°С‚РµРіРѕСЂРёРё "РљРѕРјРїРѕРЅРµРЅС‚С‹"
 	QList<QPair<QString, int>> getClassifierCodeInGroupComponent();
-	// формат возвращаемых данных getTable: id[string], code[string], name[string]
+	// С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С… getTable: id[string], code[string], name[string]
 	virtual QAbstractTableModel* getTable(Category table = ATTRIBUTES) = 0;
-	// получить коды групп созданных единиц: QPair<полное наименование, код группы>
+	// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РіСЂСѓРїРї СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†: QPair<РїРѕР»РЅРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ, РєРѕРґ РіСЂСѓРїРїС‹>
 	virtual QList<QPair<QString, QVariant>> getGroupCodes(Category table = ATTRIBUTES) = 0;
-	// получить коды в группе созданных единиц
+	// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РІ РіСЂСѓРїРїРµ СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 	virtual QList<QVariant> getInGroupCodes(QVariant codeGroup, Category table = ATTRIBUTES) = 0;
 
-	// Получить последниый допустимый код в группе (недопустимо для COMPONENTS) 
+	// РџРѕР»СѓС‡РёС‚СЊ РїРѕСЃР»РµРґРЅРёС‹Р№ РґРѕРїСѓСЃС‚РёРјС‹Р№ РєРѕРґ РІ РіСЂСѓРїРїРµ (РЅРµРґРѕРїСѓСЃС‚РёРјРѕ РґР»СЏ COMPONENTS) 
 	virtual int getValidCodeInGroupe(int codeGroup, Category table = ATTRIBUTES);
-	// получить таблицу с запросами на добавление данных от обычных пользователей
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	virtual QAbstractTableModel* getTableQueriesInsert() = 0;
-	// получить таблицу с запросами на изменения данных от обычных пользователей
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РёР·РјРµРЅРµРЅРёСЏ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	virtual QAbstractTableModel* getTableQueriesEdit() = 0;
-	// подтвердить запрос пользователя
+	// РїРѕРґС‚РІРµСЂРґРёС‚СЊ Р·Р°РїСЂРѕСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	static int confirmQuery(QString id, Category table = ATTRIBUTES);
-	//Редактирование, id - id редактируемой записи, возможно без указания table
+	//Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ, id - id СЂРµРґР°РєС‚РёСЂСѓРµРјРѕР№ Р·Р°РїРёСЃРё, РІРѕР·РјРѕР¶РЅРѕ Р±РµР· СѓРєР°Р·Р°РЅРёСЏ table
 	static int editRecord(UserType user, QString id, QString name, Category table = ATTRIBUTES);	
-	// Удаление записи всей записи на всех уровнях в том числе и для удаления запроса пользователя , возможно без указания table
+	// РЈРґР°Р»РµРЅРёРµ Р·Р°РїРёСЃРё РІСЃРµР№ Р·Р°РїРёСЃРё РЅР° РІСЃРµС… СѓСЂРѕРІРЅСЏС… РІ С‚РѕРј С‡РёСЃР»Рµ Рё РґР»СЏ СѓРґР°Р»РµРЅРёСЏ Р·Р°РїСЂРѕСЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ , РІРѕР·РјРѕР¶РЅРѕ Р±РµР· СѓРєР°Р·Р°РЅРёСЏ table
 	static int deleteRecord(QString id, Category table = ATTRIBUTES);
-	// Поиск по коду
+	// РџРѕРёСЃРє РїРѕ РєРѕРґСѓ
 	virtual QAbstractTableModel* findCode(QString code,  SearchType st) = 0;
 protected:
 	static QSqlDatabase _sdb;
@@ -73,26 +73,26 @@ class DbInitialModel: public DbElementsOfStructure
 {
 public:
 	DbInitialModel();
-	// формат возвращаемых данных getTable: id[string], code[string], name[string]
+	// С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С… getTable: id[string], code[string], name[string]
 	QAbstractTableModel* getTable(Category table = ATTRIBUTES);
-	// получить таблицу с запросами на добавление данных от обычных пользователей
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	QAbstractTableModel* getTableQueriesInsert();
-	// получить таблицу с запросами на изменения данных от обычных пользователей
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РёР·РјРµРЅРµРЅРёСЏ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	QAbstractTableModel* getTableQueriesEdit();
-	// получить коды групп созданных признаков
+	// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РіСЂСѓРїРї СЃРѕР·РґР°РЅРЅС‹С… РїСЂРёР·РЅР°РєРѕРІ
 	QList<QPair<QString, QVariant>> getGroupCodes(Category table = ATTRIBUTES);
-	// получить коды в группе созданных единиц
+	// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РІ РіСЂСѓРїРїРµ СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 	QList<QVariant> getInGroupCodes(QVariant codeGroup, Category table = ATTRIBUTES);
-	// Генерирование кодировки. Если кодировка не допустима, возвращается пустая строка
+	// Р“РµРЅРµСЂРёСЂРѕРІР°РЅРёРµ РєРѕРґРёСЂРѕРІРєРё. Р•СЃР»Рё РєРѕРґРёСЂРѕРІРєР° РЅРµ РґРѕРїСѓСЃС‚РёРјР°, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°
 	QString generateCode(int codeGroup, int codeInGroup);
-	// вставить параметр начального уровня
+	// РІСЃС‚Р°РІРёС‚СЊ РїР°СЂР°РјРµС‚СЂ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 	int insertRecord(UserType user, int codeGroup, int codeInGroup, QString name);
 
-	// Поиск по тексту с выбранным типом поиска (st) 
+	// РџРѕРёСЃРє РїРѕ С‚РµРєСЃС‚Сѓ СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) 
 	QAbstractTableModel* findText(QString string, SearchType st);
-	// Поиск с выбранным типом поиска (st) по классификатору  
+	// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂСѓ  
 	QAbstractTableModel* findText(QString string, SearchType st, int code);
-	// Поиск по коду
+	// РџРѕРёСЃРє РїРѕ РєРѕРґСѓ
 	QAbstractTableModel* findCode(QString code,  SearchType st);
 };
 
@@ -101,37 +101,37 @@ class DbConceptualModel: public DbElementsOfStructure
 {
 public:
 	DbConceptualModel();
-	// формат возвращаемых данных getTable: id[string], code[string], name[string]
+	// С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С… getTable: id[string], code[string], name[string]
 	QAbstractTableModel* getTable(Category table = ATTRIBUTES);
-	// получить таблицу с запросами на добавление данных от обычных пользователей
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	QAbstractTableModel* getTableQueriesInsert();
-	// получить таблицу с запросами на изменения данных от обычных пользователей
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РёР·РјРµРЅРµРЅРёСЏ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	QAbstractTableModel* getTableQueriesEdit();
-	// получить набор параметров, <код с наименованием, индекс>
+	// РїРѕР»СѓС‡РёС‚СЊ РЅР°Р±РѕСЂ РїР°СЂР°РјРµС‚СЂРѕРІ, <РєРѕРґ СЃ РЅР°РёРјРµРЅРѕРІР°РЅРёРµРј, РёРЅРґРµРєСЃ>
 	QMap<QString, int>  getParametrs();
-	// Получить последний допустимый дополнительный код 
+	// РџРѕР»СѓС‡РёС‚СЊ РїРѕСЃР»РµРґРЅРёР№ РґРѕРїСѓСЃС‚РёРјС‹Р№ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РєРѕРґ 
 	int getValidExtraCode(Category table, int codeGroup, int codeInGroup);
 	int getValidExtraCode(int idParametr);
-	// получить коды групп созданных единиц
+	// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РіСЂСѓРїРї СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 	QList<QPair<QString, QVariant>> getGroupCodes(Category table = ATTRIBUTES);
-	// получить коды в группе созданных единиц
+	// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РІ РіСЂСѓРїРїРµ СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 	QList<QVariant> getInGroupCodes(QVariant codeGroup, Category table = ATTRIBUTES);
-	// Генерирование кодировки. Если кодировка не допустима, возвращается пустая строка
+	// Р“РµРЅРµСЂРёСЂРѕРІР°РЅРёРµ РєРѕРґРёСЂРѕРІРєРё. Р•СЃР»Рё РєРѕРґРёСЂРѕРІРєР° РЅРµ РґРѕРїСѓСЃС‚РёРјР°, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°
 	QString generateCode(Category table, int codeGroup, int codeInGroup, int extraCode);
 	QString generateCode(int idParametr, int extraCode);
-	// вставить категорию концептуального уровня
+	// РІСЃС‚Р°РІРёС‚СЊ РєР°С‚РµРіРѕСЂРёСЋ РєРѕРЅС†РµРїС‚СѓР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 	int insertRecord(UserType user, Category table, int codeGroup, int codeInGroup, int extraCode, QString name);
-	// вставить признак концептуального уровня на основе параметра
+	// РІСЃС‚Р°РІРёС‚СЊ РїСЂРёР·РЅР°Рє РєРѕРЅС†РµРїС‚СѓР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ РЅР° РѕСЃРЅРѕРІРµ РїР°СЂР°РјРµС‚СЂР°
 	int insertRecord(UserType user, int idParametr, int extraCode, QString name);
 
-	// Поиск с выбранным типом поиска (st) по категориям 
+	// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР°С‚РµРіРѕСЂРёСЏРј 
 	QAbstractTableModel* findText(QString string, SearchType st, QList<Category> categories);
-	// Поиск с выбранным типом поиска (st) по классификатору категорий 
+	// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂСѓ РєР°С‚РµРіРѕСЂРёР№ 
 	QAbstractTableModel* findText(QString string, SearchType st, Category category, int codeGroup = -1, int codeInGroup = -1);
-	// Поиск по коду
+	// РџРѕРёСЃРє РїРѕ РєРѕРґСѓ
 	QAbstractTableModel* findCode(QString code,  SearchType st);
 private:
-	// Проверить данные на правильность
+	// РџСЂРѕРІРµСЂРёС‚СЊ РґР°РЅРЅС‹Рµ РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ
 	int checkData(Category table, int codeGroup, int codeInGroup, int extraCode, QString name);
 };
 
@@ -139,32 +139,32 @@ class DbInfologicalModel: public DbElementsOfStructure
 {
 public:
 	DbInfologicalModel();
-	// формат возвращаемых данных getTable: id[string], code[string], name[string]
+	// С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С… getTable: id[string], code[string], name[string]
 	QAbstractTableModel* getTable(Category table = ATTRIBUTES);
-	// получить таблицу с запросами на добавление данных от обычных пользователей
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РґРѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	QAbstractTableModel* getTableQueriesInsert();
-	// получить таблицу с запросами на изменения данных от обычных пользователей
+	// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РёР·РјРµРЅРµРЅРёСЏ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	QAbstractTableModel* getTableQueriesEdit();
-	// получить набор категорий <код с наименованием, индекс>
+	// РїРѕР»СѓС‡РёС‚СЊ РЅР°Р±РѕСЂ РєР°С‚РµРіРѕСЂРёР№ <РєРѕРґ СЃ РЅР°РёРјРµРЅРѕРІР°РЅРёРµРј, РёРЅРґРµРєСЃ>
 	QMap<QString, int>  getCategories(Category table);
-	// получить коды групп созданных единиц
+	// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РіСЂСѓРїРї СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 	QList<QPair<QString, QVariant>> getGroupCodes(Category table = ATTRIBUTES);
-	// получить коды в группе созданных единиц
+	// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РІ РіСЂСѓРїРїРµ СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 	QList<QVariant> getInGroupCodes(QVariant codeGroup, Category table = ATTRIBUTES);
-	// Генерирование кодировки. Если кодировка не допустима, возвращается пустая строка
+	// Р“РµРЅРµСЂРёСЂРѕРІР°РЅРёРµ РєРѕРґРёСЂРѕРІРєРё. Р•СЃР»Рё РєРѕРґРёСЂРѕРІРєР° РЅРµ РґРѕРїСѓСЃС‚РёРјР°, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°
 	QString generateCode(QChar type, int level, QString code_1, QString code_2);
 	QString generateCode(QChar type, int level, Category table, int idCategory);
-	// вставить ИСЕ инфлогического уровня
+	// РІСЃС‚Р°РІРёС‚СЊ РРЎР• РёРЅС„Р»РѕРіРёС‡РµСЃРєРѕРіРѕ СѓСЂРѕРІРЅСЏ
 	int insertRecord(UserType user, QChar type, int level, Category table, QString code_1, QString code_2, QString name);
-	// вставить ИСЕ инфлогического уровня на основе категории концептуального уровня
+	// РІСЃС‚Р°РІРёС‚СЊ РРЎР• РёРЅС„Р»РѕРіРёС‡РµСЃРєРѕРіРѕ СѓСЂРѕРІРЅСЏ РЅР° РѕСЃРЅРѕРІРµ РєР°С‚РµРіРѕСЂРёРё РєРѕРЅС†РµРїС‚СѓР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 	int insertRecord(UserType user, QChar type, int level, Category table, int idCategory);
-	// Удаление данных инфологического уровня
+	// РЈРґР°Р»РµРЅРёРµ РґР°РЅРЅС‹С… РёРЅС„РѕР»РѕРіРёС‡РµСЃРєРѕРіРѕ СѓСЂРѕРІРЅСЏ
 	int deleteRecord(QString id, Category table = ATTRIBUTES);
 
-	// Поиск с выбранным типом поиска (st) по категориям, по типам, по уровню
+	// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР°С‚РµРіРѕСЂРёСЏРј, РїРѕ С‚РёРїР°Рј, РїРѕ СѓСЂРѕРІРЅСЋ
 	QAbstractTableModel* findText(QString string, SearchType st, QList<Category> categories, QList<QChar> types, int level = -1);
-	// Поиск с выбранным типом поиска (st) по классификатору категорий 
+	// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂСѓ РєР°С‚РµРіРѕСЂРёР№ 
 	QAbstractTableModel* findText(QString string, SearchType st, Category category, QList<QChar> types,  QString codeGroup = NULL, QString codeInGroup = NULL, int level = -1);
-	// Поиск по коду
+	// РџРѕРёСЃРє РїРѕ РєРѕРґСѓ
 	QAbstractTableModel* findCode(QString code,  SearchType st);
 };

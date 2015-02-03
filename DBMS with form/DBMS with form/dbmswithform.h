@@ -1,4 +1,4 @@
-#ifndef DBMSWITHFORM_H
+п»ї#ifndef DBMSWITHFORM_H
 #define DBMSWITHFORM_H
 
 #include <QtWidgets/QMainWindow>
@@ -37,17 +37,17 @@ public:
 
 private:
 	Ui::MainWindow ui;
-	QAbstractTableModel *m; // модель для таблиц
+	QAbstractTableModel *m; // РјРѕРґРµР»СЊ РґР»СЏ С‚Р°Р±Р»РёС†
 	UserType typeUser;
 	QString dbPath;
 	QTimer* timerInfo;
-	QStringList namesClass; // наименования классов в нужном порядке
-	QMap<QString, Category> nameCategory; // наименование класса - класс
+	QStringList namesClass; // РЅР°РёРјРµРЅРѕРІР°РЅРёСЏ РєР»Р°СЃСЃРѕРІ РІ РЅСѓР¶РЅРѕРј РїРѕСЂСЏРґРєРµ
+	QMap<QString, Category> nameCategory; // РЅР°РёРјРµРЅРѕРІР°РЅРёРµ РєР»Р°СЃСЃР° - РєР»Р°СЃСЃ
 	SearchDialog *findDialog;
-	QString selectedId; // индекс выбранной строки при вызове контекстного меню
+	QString selectedId; // РёРЅРґРµРєСЃ РІС‹Р±СЂР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё РїСЂРё РІС‹Р·РѕРІРµ РєРѕРЅС‚РµРєСЃС‚РЅРѕРіРѕ РјРµРЅСЋ
 	QString selectedCode;
 	QString selectedName;
-	QMenu tabMenu; // контекстное меню таблиц
+	QMenu tabMenu; // РєРѕРЅС‚РµРєСЃС‚РЅРѕРµ РјРµРЅСЋ С‚Р°Р±Р»РёС†
 	void initializeInitialModel();
 	void initializeConceptualModel();
 	void initializeInfologicalModel();

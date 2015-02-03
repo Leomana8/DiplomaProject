@@ -1,4 +1,4 @@
-#include "DbmsElementsOfStructure.h"
+п»ї#include "DbmsElementsOfStructure.h"
 
 QSqlDatabase DbElementsOfStructure::_sdb = QSqlDatabase::addDatabase("QSQLITE");
 QMap<Category, QString> DbElementsOfStructure::nameTable;
@@ -50,20 +50,20 @@ bool DbElementsOfStructure::isConnect()
 	}
 	return true;
 }
-// наименования классов в правильном порядке
+// РЅР°РёРјРµРЅРѕРІР°РЅРёСЏ РєР»Р°СЃСЃРѕРІ РІ РїСЂР°РІРёР»СЊРЅРѕРј РїРѕСЂСЏРґРєРµ
 QStringList DbElementsOfStructure::getSortClassNames()
 {
 	QStringList namesClass;
-	namesClass.push_back(QStringLiteral("Цикл"));
-	namesClass.push_back(QStringLiteral("Процесс"));
-	namesClass.push_back(QStringLiteral("Задача"));
-	namesClass.push_back(QStringLiteral("Компонент"));
-	namesClass.push_back(QStringLiteral("Объект"));
-	namesClass.push_back(QStringLiteral("Признак"));
-	namesClass.push_back(QStringLiteral("Значение"));
+	namesClass.push_back(QStringLiteral("Р¦РёРєР»"));
+	namesClass.push_back(QStringLiteral("РџСЂРѕС†РµСЃСЃ"));
+	namesClass.push_back(QStringLiteral("Р—Р°РґР°С‡Р°"));
+	namesClass.push_back(QStringLiteral("РљРѕРјРїРѕРЅРµРЅС‚"));
+	namesClass.push_back(QStringLiteral("РћР±СЉРµРєС‚"));
+	namesClass.push_back(QStringLiteral("РџСЂРёР·РЅР°Рє"));
+	namesClass.push_back(QStringLiteral("Р—РЅР°С‡РµРЅРёРµ"));
 	return namesClass;
 }
-// набор соответствий наимнований классов к категориям
+// РЅР°Р±РѕСЂ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёР№ РЅР°РёРјРЅРѕРІР°РЅРёР№ РєР»Р°СЃСЃРѕРІ Рє РєР°С‚РµРіРѕСЂРёСЏРј
 QMap<QString, Category> DbElementsOfStructure::getCategoryNames()
 {
 	QStringList namesClass = getSortClassNames();
@@ -78,7 +78,7 @@ QMap<QString, Category> DbElementsOfStructure::getCategoryNames()
 	return nameCat;
 }
 
-// получить таблицу типов формат возвращаемых данных: code[QChar], name[string]
+// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ С‚РёРїРѕРІ С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С…: code[QChar], name[string]
 QMap<QString, QChar> DbElementsOfStructure::getTypes()
 {
 	QMap<QString, QChar> result;
@@ -99,7 +99,7 @@ QMap<QString, QChar> DbElementsOfStructure::getTypes()
 	return result;
 }
 
-// получить справочник классификатора категорий, формат возвращаемых данных: полное наименование[QString], код[int]
+// РїРѕР»СѓС‡РёС‚СЊ СЃРїСЂР°РІРѕС‡РЅРёРє РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР° РєР°С‚РµРіРѕСЂРёР№, С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С…: РїРѕР»РЅРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ[QString], РєРѕРґ[int]
 QList<QPair<QString, int>> DbElementsOfStructure::getClassifierCodeGroup(Category table)
 {
 	QList<QPair<QString, int>> result;
@@ -107,7 +107,7 @@ QList<QPair<QString, int>> DbElementsOfStructure::getClassifierCodeGroup(Categor
 	{
 		return result;
 	}
-	// корректировка класса или запроса
+	// РєРѕСЂСЂРµРєС‚РёСЂРѕРІРєР° РєР»Р°СЃСЃР° РёР»Рё Р·Р°РїСЂРѕСЃР°
 	if(table == OBJECTS)
 	{
 		return getClassifierCodeInGroupComponent();
@@ -139,7 +139,7 @@ QList<QPair<QString, int>> DbElementsOfStructure::getClassifierCodeGroup(Categor
 	return result;
 }
 
-// получить классификацию кодов в группе для категории "Компоненты", формат возвращаемых данных: полное наименование[QString], код[int]
+// РїРѕР»СѓС‡РёС‚СЊ РєР»Р°СЃСЃРёС„РёРєР°С†РёСЋ РєРѕРґРѕРІ РІ РіСЂСѓРїРїРµ РґР»СЏ РєР°С‚РµРіРѕСЂРёРё "РљРѕРјРїРѕРЅРµРЅС‚С‹", С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С…: РїРѕР»РЅРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ[QString], РєРѕРґ[int]
 QList<QPair<QString, int>> DbElementsOfStructure::getClassifierCodeInGroupComponent()
 {
 	QList<QPair<QString, int>>  result;
@@ -162,7 +162,7 @@ QList<QPair<QString, int>> DbElementsOfStructure::getClassifierCodeInGroupCompon
 	return result;
 }
 
-// Получить последниый допустимый код в группе (недопустимо для COMPONENTS) 
+// РџРѕР»СѓС‡РёС‚СЊ РїРѕСЃР»РµРґРЅРёС‹Р№ РґРѕРїСѓСЃС‚РёРјС‹Р№ РєРѕРґ РІ РіСЂСѓРїРїРµ (РЅРµРґРѕРїСѓСЃС‚РёРјРѕ РґР»СЏ COMPONENTS) 
 int DbElementsOfStructure::getValidCodeInGroupe(int codeGroup, Category table)
 {
 	if(!isConnect())
@@ -179,7 +179,7 @@ int DbElementsOfStructure::getValidCodeInGroupe(int codeGroup, Category table)
 		" AND confirm = " + QString::number(EXPERT));
 	if(!maxCode.next())
 	{
-		return 1;// первый код
+		return 1;// РїРµСЂРІС‹Р№ РєРѕРґ
 	}
 	return maxCode.value(0).toInt() + 1;
 }
@@ -193,7 +193,7 @@ int DbElementsOfStructure::deleteRecord(QString id, Category table )
 	QChar c = id[0];
 	QList<Category> tablesForFind = nameTable.keys();
 	QSqlQueryModel *model = new QSqlQueryModel();
-	// поиск к какому классу(таблице) принадлежит код
+	// РїРѕРёСЃРє Рє РєР°РєРѕРјСѓ РєР»Р°СЃСЃСѓ(С‚Р°Р±Р»РёС†Рµ) РїСЂРёРЅР°РґР»РµР¶РёС‚ РєРѕРґ
 	foreach(Category var, tablesForFind)
 	{
 		if (c == var)
@@ -213,7 +213,7 @@ int DbElementsOfStructure::deleteRecord(QString id, Category table )
 	return 0;
 }
 
-//Редактирование, id - id редактируемой записи
+//Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ, id - id СЂРµРґР°РєС‚РёСЂСѓРµРјРѕР№ Р·Р°РїРёСЃРё
 int DbElementsOfStructure::editRecord(UserType user, QString id, QString name, Category table)
 {
 	if(!isConnect())
@@ -223,7 +223,7 @@ int DbElementsOfStructure::editRecord(UserType user, QString id, QString name, C
 	QChar c = id[0];
 	QList<Category> tablesForFind = nameTable.keys();
 	QSqlQueryModel *model = new QSqlQueryModel();
-	// поиск к какому классу(таблице) принадлежит код
+	// РїРѕРёСЃРє Рє РєР°РєРѕРјСѓ РєР»Р°СЃСЃСѓ(С‚Р°Р±Р»РёС†Рµ) РїСЂРёРЅР°РґР»РµР¶РёС‚ РєРѕРґ
 	foreach(Category var, tablesForFind)
 	{
 		if (c == var)
@@ -255,7 +255,7 @@ int DbElementsOfStructure::editRecord(UserType user, QString id, QString name, C
 	return 0;
 }
 
-// подтвердить запрос пользователя
+// РїРѕРґС‚РІРµСЂРґРёС‚СЊ Р·Р°РїСЂРѕСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 int DbElementsOfStructure::confirmQuery(QString id, Category table)
 {
 	if(!isConnect())
@@ -267,7 +267,7 @@ int DbElementsOfStructure::confirmQuery(QString id, Category table)
 	QChar c = id[0];
 	QList<Category> tablesForFind = nameTable.keys();
 	QSqlQueryModel *model = new QSqlQueryModel();
-	// поиск к какому классу(таблице) принадлежит код
+	// РїРѕРёСЃРє Рє РєР°РєРѕРјСѓ РєР»Р°СЃСЃСѓ(С‚Р°Р±Р»РёС†Рµ) РїСЂРёРЅР°РґР»РµР¶РёС‚ РєРѕРґ
 	foreach(Category var, tablesForFind)
 	{
 		if (c == var)
@@ -288,13 +288,13 @@ int DbElementsOfStructure::confirmQuery(QString id, Category table)
 	int conf = query.value(0).toInt();
 	if(conf == USER)
 	{
-		// подвердтить добавление
+		// РїРѕРґРІРµСЂРґС‚РёС‚СЊ РґРѕР±Р°РІР»РµРЅРёРµ
 		str = "UPDATE " + nameTable[table] + " SET confirm = " + QString::number(EXPERT) +
 			" WHERE id = " + id;
 	}
 	if (conf > USER)
 	{
-		// подвердить редактирование
+		// РїРѕРґРІРµСЂРґРёС‚СЊ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ
 		int idEdit = conf - USER - 1;
 		str = "UPDATE " + nameTable[table] + " SET name = '" + query.value(1).toString() + 
 			"' WHERE id = " + QString::number(idEdit);
@@ -308,12 +308,12 @@ int DbElementsOfStructure::confirmQuery(QString id, Category table)
 	return 0;
 }
 
-// НАЧАЛЬНЫЙ УРОВЕНЬ
+// РќРђР§РђР›Р¬РќР«Р™ РЈР РћР’Р•РќР¬
 
 DbInitialModel::DbInitialModel() : DbElementsOfStructure(){}
 
-// получить таблицу параметров начального уровня
-// формат возвращаемых данных getTable: id[string], code[string], name[string]
+// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ РїР°СЂР°РјРµС‚СЂРѕРІ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
+// С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С… getTable: id[string], code[string], name[string]
 QAbstractTableModel* DbInitialModel::getTable(Category table)
 {
 	if(!isConnect())
@@ -327,8 +327,8 @@ QAbstractTableModel* DbInitialModel::getTable(Category table)
 		" FROM " + nameTable[ATTRIBUTES] +
 		" WHERE confirm = " + QString::number(EXPERT) + " AND extra_code = ''" + " AND code_group BETWEEN 0 AND 99");
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
@@ -347,9 +347,9 @@ QAbstractTableModel* DbInitialModel::getTableQueriesEdit()
 		" WHERE confirm > " + QString::number(USER) + " AND extra_code = ''" + " AND code_group BETWEEN 0 AND 99";
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Новое наименование"));
-	model->setHeaderData(3, Qt::Horizontal, QStringLiteral("Старое наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќРѕРІРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
+	model->setHeaderData(3, Qt::Horizontal, QStringLiteral("РЎС‚Р°СЂРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 QAbstractTableModel* DbInitialModel::getTableQueriesInsert()
@@ -365,12 +365,12 @@ QAbstractTableModel* DbInitialModel::getTableQueriesInsert()
 		" FROM " + nameTable[ATTRIBUTES] +
 		" WHERE confirm = " + QString::number(USER) + " AND extra_code = ''" + " AND code_group BETWEEN 0 AND 99");
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
-// Генерирование кодировки. Если кодировка не допустима, возвращается пустая строка
+// Р“РµРЅРµСЂРёСЂРѕРІР°РЅРёРµ РєРѕРґРёСЂРѕРІРєРё. Р•СЃР»Рё РєРѕРґРёСЂРѕРІРєР° РЅРµ РґРѕРїСѓСЃС‚РёРјР°, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°
 QString DbInitialModel::generateCode(int codeGroup, int codeInGroup)
 {
 	if(!isConnect())
@@ -378,27 +378,27 @@ QString DbInitialModel::generateCode(int codeGroup, int codeInGroup)
 		return NULL;
 	}
 	QSqlQuery codes;
-	// отбираем допустимые коды группы
+	// РѕС‚Р±РёСЂР°РµРј РґРѕРїСѓСЃС‚РёРјС‹Рµ РєРѕРґС‹ РіСЂСѓРїРїС‹
 	codes.exec("SELECT code FROM ClassifierCategories WHERE class = 'R' AND code = '" + QString::number(codeGroup) + "'");
 	if(!codes.next())
 	{
-		return QStringLiteral("Неверный код группы");
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ РєРѕРґ РіСЂСѓРїРїС‹");
 	}
 	if(codeInGroup <= 0)
 	{
-		return QStringLiteral("Неверный код в группе");
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ РєРѕРґ РІ РіСЂСѓРїРїРµ");
 	}
 	codes.exec("SELECT code_in_group, code_group FROM " + nameTable[ATTRIBUTES] 
 	+ " WHERE code_in_group = '" + QString::number(codeInGroup) + "' AND code_group = '" + QString::number(codeGroup) + 
 		"' AND confirm = " + QString::number(EXPERT));
 	if(codes.next())
 	{
-		return QStringLiteral("Такой код существует в таблице");
+		return QStringLiteral("РўР°РєРѕР№ РєРѕРґ СЃСѓС‰РµСЃС‚РІСѓРµС‚ РІ С‚Р°Р±Р»РёС†Рµ");
 	}
 	return "A" + QString::number(codeGroup) + "." + QString::number(codeInGroup);
 }
 
-// вставить параметр начального уровня
+// РІСЃС‚Р°РІРёС‚СЊ РїР°СЂР°РјРµС‚СЂ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 int DbInitialModel::insertRecord(UserType user, int codeGroup, int codeInGroup, QString name)
 {
 	if(!isConnect())
@@ -414,7 +414,7 @@ int DbInitialModel::insertRecord(UserType user, int codeGroup, int codeInGroup, 
 	QString err = query.lastError().text();
 	if(query.next())
 	{
-		// запись с таким кодом существует
+		// Р·Р°РїРёСЃСЊ СЃ С‚Р°РєРёРј РєРѕРґРѕРј СЃСѓС‰РµСЃС‚РІСѓРµС‚
 		return -2;
 	}
 	name = name.toLower().simplified();
@@ -429,7 +429,7 @@ int DbInitialModel::insertRecord(UserType user, int codeGroup, int codeInGroup, 
 	}
 	return 0;
 }
-// получить коды групп созданных единиц
+// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РіСЂСѓРїРї СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 QList<QPair<QString, QVariant>> DbInitialModel::getGroupCodes(Category table)
 {
 	QList<QPair<QString, QVariant>> result;
@@ -465,7 +465,7 @@ QList<QPair<QString, QVariant>> DbInitialModel::getGroupCodes(Category table)
 }
 
 
-// получить коды в группе созданных единиц
+// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РІ РіСЂСѓРїРїРµ СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 QList<QVariant> DbInitialModel::getInGroupCodes(QVariant codeGroup, Category table)
 {
 	QList<QVariant> resault;
@@ -491,7 +491,7 @@ QList<QVariant> DbInitialModel::getInGroupCodes(QVariant codeGroup, Category tab
 	return resault;
 }
 
-// Поиск по тексту с выбранным типом поиска (st) 
+// РџРѕРёСЃРє РїРѕ С‚РµРєСЃС‚Сѓ СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) 
 QAbstractTableModel* DbInitialModel::findText(QString string, SearchType st)
 {
 	if(!isConnect())
@@ -521,14 +521,14 @@ QAbstractTableModel* DbInitialModel::findText(QString string, SearchType st)
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
-	model->setHeaderData(3, Qt::Horizontal, QStringLiteral("Единица измерения"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
+	model->setHeaderData(3, Qt::Horizontal, QStringLiteral("Р•РґРёРЅРёС†Р° РёР·РјРµСЂРµРЅРёСЏ"));
 	return model;
 
 }
 
-// Поиск с выбранным типом поиска (st) по классификатору  
+// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂСѓ  
 QAbstractTableModel* DbInitialModel::findText(QString string, SearchType st, int code)
 {
 	if(!isConnect())
@@ -558,11 +558,11 @@ QAbstractTableModel* DbInitialModel::findText(QString string, SearchType st, int
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
-// Поиск по коду
+// РџРѕРёСЃРє РїРѕ РєРѕРґСѓ
 QAbstractTableModel* DbInitialModel::findCode(QString code,  SearchType st)
 {
 	if(!isConnect())
@@ -592,18 +592,18 @@ QAbstractTableModel* DbInitialModel::findCode(QString code,  SearchType st)
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
 
-// КОНЦЕПТУАЛЬНЫЙ УРОВЕНЬ
+// РљРћРќР¦Р•РџРўРЈРђР›Р¬РќР«Р™ РЈР РћР’Р•РќР¬
 
 DbConceptualModel::DbConceptualModel() : DbElementsOfStructure(){}
 
-// получить таблицу параметров концептуального уровня
-// формат возвращаемых данных getTable: id[string], code[string], name[string]
+// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ РїР°СЂР°РјРµС‚СЂРѕРІ РєРѕРЅС†РµРїС‚СѓР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
+// С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С… getTable: id[string], code[string], name[string]
 QAbstractTableModel* DbConceptualModel::getTable(Category table)
 {
 	if(!isConnect())
@@ -618,16 +618,16 @@ QAbstractTableModel* DbConceptualModel::getTable(Category table)
 		" WHERE confirm = " + QString::number(EXPERT) + " AND code_group BETWEEN 0 AND 99 GROUP BY code";
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	if (table == VALUES)
 	{
-		model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Единица измерения"));
+		model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Р•РґРёРЅРёС†Р° РёР·РјРµСЂРµРЅРёСЏ"));
 	}
 	return model;
 }
 
-// получить таблицу с запросами на изменения данных от обычных пользователей
+// РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ СЃ Р·Р°РїСЂРѕСЃР°РјРё РЅР° РёР·РјРµРЅРµРЅРёСЏ РґР°РЅРЅС‹С… РѕС‚ РѕР±С‹С‡РЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 QAbstractTableModel* DbConceptualModel::getTableQueriesEdit()
 {
 	if(!isConnect())
@@ -637,7 +637,7 @@ QAbstractTableModel* DbConceptualModel::getTableQueriesEdit()
 	QList<Category> tables= nameTable.keys();
 	QString str;
 	QSqlQueryModel *model = new QSqlQueryModel();
-	// поиск к какому классу(таблице) принадлежит код
+	// РїРѕРёСЃРє Рє РєР°РєРѕРјСѓ РєР»Р°СЃСЃСѓ(С‚Р°Р±Р»РёС†Рµ) РїСЂРёРЅР°РґР»РµР¶РёС‚ РєРѕРґ
 	int i = 0;
 	foreach(Category var, tables)
 	{
@@ -655,9 +655,9 @@ QAbstractTableModel* DbConceptualModel::getTableQueriesEdit()
 	
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Новое наименование"));
-	model->setHeaderData(3, Qt::Horizontal, QStringLiteral("Старое наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќРѕРІРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
+	model->setHeaderData(3, Qt::Horizontal, QStringLiteral("РЎС‚Р°СЂРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 QAbstractTableModel* DbConceptualModel::getTableQueriesInsert()
@@ -685,8 +685,8 @@ QAbstractTableModel* DbConceptualModel::getTableQueriesInsert()
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
@@ -713,7 +713,7 @@ QMap<QString, int> DbConceptualModel::getParametrs()
 	return result;
 }
 
-// Получить последний допустимый дополнительный код 
+// РџРѕР»СѓС‡РёС‚СЊ РїРѕСЃР»РµРґРЅРёР№ РґРѕРїСѓСЃС‚РёРјС‹Р№ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РєРѕРґ 
 int DbConceptualModel::getValidExtraCode(Category table, int codeGroup, int codeInGroup)
 {
 	if(!isConnect())
@@ -727,7 +727,7 @@ int DbConceptualModel::getValidExtraCode(Category table, int codeGroup, int code
 		" AND confirm = " + QString::number(EXPERT));
 	if(!maxCode.next())
 	{
-		return 1; // первый код
+		return 1; // РїРµСЂРІС‹Р№ РєРѕРґ
 	}
 	return maxCode.value(0).toInt() + 1;
 }
@@ -747,13 +747,13 @@ int DbConceptualModel::getValidExtraCode(int idParametr)
 	QString er = maxCode.lastError().text();
 	if(!maxCode.next())
 	{
-		return 1; // первая запись
+		return 1; // РїРµСЂРІР°СЏ Р·Р°РїРёСЃСЊ
 	}
 	int y = maxCode.value(0).toInt();
 	return maxCode.value(0).toInt() + 1;
 }
 
-// получить коды групп созданных единиц
+// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РіСЂСѓРїРї СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 QList<QPair<QString, QVariant>> DbConceptualModel::getGroupCodes(Category table)
 {
 	QList<QPair<QString, QVariant>> result;
@@ -786,7 +786,7 @@ QList<QPair<QString, QVariant>> DbConceptualModel::getGroupCodes(Category table)
 	}
 	return result;
 }
-// получить коды в группе созданных единиц
+// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РІ РіСЂСѓРїРїРµ СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 QList<QVariant> DbConceptualModel::getInGroupCodes(QVariant codeGroup, Category table)
 {
 	QList<QVariant> resault;
@@ -812,7 +812,7 @@ QList<QVariant> DbConceptualModel::getInGroupCodes(QVariant codeGroup, Category 
 	return resault;
 }
 
-// Проверить данные на правильность
+// РџСЂРѕРІРµСЂРёС‚СЊ РґР°РЅРЅС‹Рµ РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ
 int DbConceptualModel::checkData(Category table, int codeGroup, int codeInGroup, int extraCode, QString name)
 {
 
@@ -825,7 +825,7 @@ int DbConceptualModel::checkData(Category table, int codeGroup, int codeInGroup,
 	}
 	if(!codes.contains(codeGroup))
 	{
-		return 1; // codeGroup недопустимый
+		return 1; // codeGroup РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№
 	}
 	if(table == COMPONENTS)
 	{
@@ -836,21 +836,21 @@ int DbConceptualModel::checkData(Category table, int codeGroup, int codeInGroup,
 		}
 		if(!codes.contains(codeInGroup))
 		{
-			return 2; //  codeInGroup недопустимый
+			return 2; //  codeInGroup РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№
 		}
 	}
 	if(extraCode < 0)
 	{
-		return 3; // extraCode недопустиый
+		return 3; // extraCode РЅРµРґРѕРїСѓСЃС‚РёС‹Р№
 	}
 	if(name.isEmpty())
 	{
-		return 4; // name пустое
+		return 4; // name РїСѓСЃС‚РѕРµ
 	}
 	return 0;
 }
 
-// Генерирование кодировки. Если кодировка не допустима, возвращается пустая строка
+// Р“РµРЅРµСЂРёСЂРѕРІР°РЅРёРµ РєРѕРґРёСЂРѕРІРєРё. Р•СЃР»Рё РєРѕРґРёСЂРѕРІРєР° РЅРµ РґРѕРїСѓСЃС‚РёРјР°, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°
 QString DbConceptualModel::generateCode(Category table, int codeGroup, int codeInGroup, int extraCode)
 {
 	if(!isConnect())
@@ -858,23 +858,23 @@ QString DbConceptualModel::generateCode(Category table, int codeGroup, int codeI
 		return NULL;
 	}
 	QSqlQuery query;
-	// проверка на допустимость кода 
+	// РїСЂРѕРІРµСЂРєР° РЅР° РґРѕРїСѓСЃС‚РёРјРѕСЃС‚СЊ РєРѕРґР° 
 	int err = checkData(table, codeGroup, codeInGroup, extraCode, "name");
 	switch (err)
 	{
 	case 0:
 		break;
 	case 1: 
-		return QStringLiteral("Неверный код группы");
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ РєРѕРґ РіСЂСѓРїРїС‹");
 	case 2:
-		return QStringLiteral("Неверный код в группе");
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ РєРѕРґ РІ РіСЂСѓРїРїРµ");
 	case 3:
-		return QStringLiteral("Неверный дополнительный код");
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РєРѕРґ");
 	}
 	QString ec = QString::number(extraCode);
 	if(extraCode == 0)
 	{
-		// без дополнительного кода
+		// Р±РµР· РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРіРѕ РєРѕРґР°
 		ec = "";
 	}
 	query.exec("SELECT code_in_group, code_group, extra_code FROM " + nameTable[table] +
@@ -884,7 +884,7 @@ QString DbConceptualModel::generateCode(Category table, int codeGroup, int codeI
 		"' AND confirm = " + QString::number(EXPERT));
 	if(query.next())
 	{
-		return QStringLiteral("Такой код существует в таблице");
+		return QStringLiteral("РўР°РєРѕР№ РєРѕРґ СЃСѓС‰РµСЃС‚РІСѓРµС‚ РІ С‚Р°Р±Р»РёС†Рµ");
 	}
 	ec = "." + ec;
 	return QString(table) + QString::number(codeGroup) + "." + QString::number(codeInGroup) + ec;
@@ -903,24 +903,24 @@ QString DbConceptualModel::generateCode(int idParametr, int extraCode)
 	query.exec(str);
 	if(!query.next())
 	{
-		return QStringLiteral("Параметра с данным id не существует");
+		return QStringLiteral("РџР°СЂР°РјРµС‚СЂР° СЃ РґР°РЅРЅС‹Рј id РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 	}
 	if(extraCode <= 0)
 	{
-		return QStringLiteral("Неверный дополнительный код");
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РєРѕРґ");
 	}
 	return QString(ATTRIBUTES) + query.value(0).toString() + "." + QString::number(extraCode);
 
 }
 
-// вставить параметр концептуального уровня
+// РІСЃС‚Р°РІРёС‚СЊ РїР°СЂР°РјРµС‚СЂ РєРѕРЅС†РµРїС‚СѓР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 int DbConceptualModel::insertRecord(UserType user, Category table, int codeGroup, int codeInGroup, int extraCode, QString name)
 {
 	if(!isConnect())
 	{
 		return -1;
 	}
-	// проверка на допустимость кода 
+	// РїСЂРѕРІРµСЂРєР° РЅР° РґРѕРїСѓСЃС‚РёРјРѕСЃС‚СЊ РєРѕРґР° 
 	int err = checkData(table, codeGroup, codeInGroup, extraCode, name);
 	switch (err)
 	{
@@ -938,7 +938,7 @@ int DbConceptualModel::insertRecord(UserType user, Category table, int codeGroup
 	QString ec = QString::number(extraCode);
 	if(extraCode == 0)
 	{
-		// без дополнительного кода
+		// Р±РµР· РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРіРѕ РєРѕРґР°
 		ec = "";
 	}
 	QSqlQuery query;
@@ -951,7 +951,7 @@ int DbConceptualModel::insertRecord(UserType user, Category table, int codeGroup
 	query.exec(str);
 	if(query.next())
 	{
-		// запись с таким кодом существует
+		// Р·Р°РїРёСЃСЊ СЃ С‚Р°РєРёРј РєРѕРґРѕРј СЃСѓС‰РµСЃС‚РІСѓРµС‚
 		return -6;
 	}
 	name = name.toLower().simplified();
@@ -987,7 +987,7 @@ int DbConceptualModel::insertRecord(UserType user, int idParametr, int extraCode
 	QString err = record.lastError().text();
 	if(!record.next())
 	{
-		// параметра с данным id не существует
+		// РїР°СЂР°РјРµС‚СЂР° СЃ РґР°РЅРЅС‹Рј id РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
 		return -2;
 	}
 	str = "SELECT code_in_group, code_group, extra_code FROM " + nameTable[ATTRIBUTES] +
@@ -998,7 +998,7 @@ int DbConceptualModel::insertRecord(UserType user, int idParametr, int extraCode
 	query.exec(str);
 	if(query.next())
 	{
-		// запись с таким кодом существует
+		// Р·Р°РїРёСЃСЊ СЃ С‚Р°РєРёРј РєРѕРґРѕРј СЃСѓС‰РµСЃС‚РІСѓРµС‚
 		return -6;
 	}
 	name = name.toLower().simplified();
@@ -1020,7 +1020,7 @@ int DbConceptualModel::insertRecord(UserType user, int idParametr, int extraCode
 	return 0;
 }
 
-// Поиск с выбранным типом поиска (st) по категориям 
+// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР°С‚РµРіРѕСЂРёСЏРј 
 QAbstractTableModel* DbConceptualModel::findText(QString string, SearchType st, QList<Category> categories)
 {
 	if(!isConnect() || categories.isEmpty())
@@ -1059,12 +1059,12 @@ QAbstractTableModel* DbConceptualModel::findText(QString string, SearchType st, 
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
-// Поиск с выбранным типом поиска (st) по классификатору категорий 
+// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂСѓ РєР°С‚РµРіРѕСЂРёР№ 
 QAbstractTableModel* DbConceptualModel::findText(QString string, SearchType st, Category category, int codeGroup, int codeInGroup)
 {
 	if(!isConnect())
@@ -1102,12 +1102,12 @@ QAbstractTableModel* DbConceptualModel::findText(QString string, SearchType st, 
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
-// Поиск по коду
+// РџРѕРёСЃРє РїРѕ РєРѕРґСѓ
 QAbstractTableModel* DbConceptualModel::findCode(QString code,  SearchType st)
 {
 	if(!isConnect())
@@ -1120,7 +1120,7 @@ QAbstractTableModel* DbConceptualModel::findCode(QString code,  SearchType st)
 	QList<Category> tablesForFind = nameTable.keys();
 	QString str;
 	QSqlQueryModel *model = new QSqlQueryModel();
-	// поиск к какому классу(таблице) принадлежит код
+	// РїРѕРёСЃРє Рє РєР°РєРѕРјСѓ РєР»Р°СЃСЃСѓ(С‚Р°Р±Р»РёС†Рµ) РїСЂРёРЅР°РґР»РµР¶РёС‚ РєРѕРґ
 	foreach(Category var, tablesForFind)
 	{
 		if (c == var)
@@ -1131,7 +1131,7 @@ QAbstractTableModel* DbConceptualModel::findCode(QString code,  SearchType st)
 	}
 	if(table != -1)
 	{
-		// код таблицы найден/ Значит поиск производится в одной таблице
+		// РєРѕРґ С‚Р°Р±Р»РёС†С‹ РЅР°Р№РґРµРЅ/ Р—РЅР°С‡РёС‚ РїРѕРёСЃРє РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РІ РѕРґРЅРѕР№ С‚Р°Р±Р»РёС†Рµ
 		tablesForFind.clear();
 		tablesForFind.append((Category)table);
 	}
@@ -1164,16 +1164,16 @@ QAbstractTableModel* DbConceptualModel::findCode(QString code,  SearchType st)
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;	
 }
 
 
-// ИНФОЛОГИЧЕСКАЯ МОДЕЛЬ
+// РРќР¤РћР›РћР“РР§Р•РЎРљРђРЇ РњРћР”Р•Р›Р¬
 DbInfologicalModel::DbInfologicalModel(): DbElementsOfStructure(){}
 
-// формат возвращаемых данных getTable: id[string], code[string], name[string]
+// С„РѕСЂРјР°С‚ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… РґР°РЅРЅС‹С… getTable: id[string], code[string], name[string]
 QAbstractTableModel* DbInfologicalModel::getTable(Category table)
 {
 	if(!isConnect())
@@ -1193,16 +1193,16 @@ QAbstractTableModel* DbInfologicalModel::getTable(Category table)
 		" WHERE confirm = " + QString::number(EXPERT) + " AND type IS NOT NULL AND code_group NOT BETWEEN 0 AND 99 ";
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	if (table == VALUES)
 	{
-		model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Единица измерения"));
+		model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Р•РґРёРЅРёС†Р° РёР·РјРµСЂРµРЅРёСЏ"));
 	}
 	return model;
 }
 
-// получить набор категорий <код с наименованием, индекс>
+// РїРѕР»СѓС‡РёС‚СЊ РЅР°Р±РѕСЂ РєР°С‚РµРіРѕСЂРёР№ <РєРѕРґ СЃ РЅР°РёРјРµРЅРѕРІР°РЅРёРµРј, РёРЅРґРµРєСЃ>
 QMap<QString, int>  DbInfologicalModel::getCategories(Category table)
 {
 	QMap<QString, int> result;
@@ -1216,7 +1216,7 @@ QMap<QString, int>  DbInfologicalModel::getCategories(Category table)
 	str = "SELECT DISTINCT ('" + QString(table) + "' || code_group || '.' || code_in_group || COALESCE((SELECT '.' || extra_code WHERE extra_code <> ''), '') || ' ' || name) AS c, id"
 		" FROM " + nameTable[table] +
 		" WHERE confirm = " + QString::number(EXPERT);
-	// для PROCESS и COMPONENT могут повторятся коды концептуального уровня, то есть инфологическая единица может уже быть в базе
+	// РґР»СЏ PROCESS Рё COMPONENT РјРѕРіСѓС‚ РїРѕРІС‚РѕСЂСЏС‚СЃСЏ РєРѕРґС‹ РєРѕРЅС†РµРїС‚СѓР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ, С‚Рѕ РµСЃС‚СЊ РёРЅС„РѕР»РѕРіРёС‡РµСЃРєР°СЏ РµРґРёРЅРёС†Р° РјРѕР¶РµС‚ СѓР¶Рµ Р±С‹С‚СЊ РІ Р±Р°Р·Рµ
 	if (!(table == PROCESSES || table == COMPONENTS))
 	{
 		str += " AND type IS NULL";
@@ -1262,8 +1262,8 @@ QAbstractTableModel* DbInfologicalModel::getTableQueriesInsert( )
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 QAbstractTableModel* DbInfologicalModel::getTableQueriesEdit()
@@ -1275,7 +1275,7 @@ QAbstractTableModel* DbInfologicalModel::getTableQueriesEdit()
 	QList<Category> tables= nameTable.keys();
 	QString str;
 	QSqlQueryModel *model = new QSqlQueryModel();
-	// поиск к какому классу(таблице) принадлежит код
+	// РїРѕРёСЃРє Рє РєР°РєРѕРјСѓ РєР»Р°СЃСЃСѓ(С‚Р°Р±Р»РёС†Рµ) РїСЂРёРЅР°РґР»РµР¶РёС‚ РєРѕРґ
 	int i = 0;
 	foreach(Category var, tables)
 	{
@@ -1298,31 +1298,31 @@ QAbstractTableModel* DbInfologicalModel::getTableQueriesEdit()
 
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Новое наименование"));
-	model->setHeaderData(3, Qt::Horizontal, QStringLiteral("Старое наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќРѕРІРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
+	model->setHeaderData(3, Qt::Horizontal, QStringLiteral("РЎС‚Р°СЂРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
-// Генерирование кодировки. Если кодировка не допустима, возвращается пустая строка
+// Р“РµРЅРµСЂРёСЂРѕРІР°РЅРёРµ РєРѕРґРёСЂРѕРІРєРё. Р•СЃР»Рё РєРѕРґРёСЂРѕРІРєР° РЅРµ РґРѕРїСѓСЃС‚РёРјР°, РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°
 QString DbInfologicalModel::generateCode(QChar type, int level, QString code_1, QString code_2)
 {
 
 	if(!getTypes().values().contains(type))
 	{
-		return QStringLiteral("Неверный тип"); // type недопустимый
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ С‚РёРї"); // type РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№
 	}
 	if (level <= 0)
 	{
-		return QStringLiteral("Неверный код уровня"); // level неверный
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ РєРѕРґ СѓСЂРѕРІРЅСЏ"); // level РЅРµРІРµСЂРЅС‹Р№
 	}
 	if(code_1.isEmpty())
 	{
-		return QStringLiteral("Пустой код 1"); // code_1 пустой
+		return QStringLiteral("РџСѓСЃС‚РѕР№ РєРѕРґ 1"); // code_1 РїСѓСЃС‚РѕР№
 	}
 	if(code_2.isEmpty())
 	{
-		return QStringLiteral("Пустой код 2"); 
+		return QStringLiteral("РџСѓСЃС‚РѕР№ РєРѕРґ 2"); 
 	}	
 	return  QString(type) + QString::number(level) + "."  + code_1 + "." + code_2;
 }
@@ -1337,11 +1337,11 @@ QString DbInfologicalModel::generateCode(QChar type, int level, Category table, 
 
 	if(!getTypes().values().contains(type))
 	{
-		return QStringLiteral("Неверный тип"); // type недопустимый
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ С‚РёРї"); // type РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№
 	}
 	if (level <= 0)
 	{
-		return QStringLiteral("Неверный код уровня"); // level неверный
+		return QStringLiteral("РќРµРІРµСЂРЅС‹Р№ РєРѕРґ СѓСЂРѕРІРЅСЏ"); // level РЅРµРІРµСЂРЅС‹Р№
 	}
 	QSqlQuery query;
 	QString str;
@@ -1350,11 +1350,11 @@ QString DbInfologicalModel::generateCode(QChar type, int level, Category table, 
 	query.exec(str);
 	if(!query.next())
 	{
-		return QStringLiteral("Катагории с данным id не существует");
+		return QStringLiteral("РљР°С‚Р°РіРѕСЂРёРё СЃ РґР°РЅРЅС‹Рј id РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 	}
 	return QString(type) + QString::number(level) + "." + QString(table) + query.value(0).toString();
 }
-// вставить ИСЕ инфлогического уровня
+// РІСЃС‚Р°РІРёС‚СЊ РРЎР• РёРЅС„Р»РѕРіРёС‡РµСЃРєРѕРіРѕ СѓСЂРѕРІРЅСЏ
 int DbInfologicalModel::insertRecord(UserType user, QChar type, int level, Category table, QString code_1, QString code_2, QString name)
 {	
 	if(!isConnect())
@@ -1369,15 +1369,15 @@ int DbInfologicalModel::insertRecord(UserType user, QChar type, int level, Categ
 	{
 		if(!getTypes().values().contains(type))
 		{
-			return -2; // type недопустимый
+			return -2; // type РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№
 		}
 		if (level <= 0)
 		{
-			return -3; // level неверный
+			return -3; // level РЅРµРІРµСЂРЅС‹Р№
 		}
 		if(code_1.isEmpty())
 		{
-			return -41; // code_1 пустой
+			return -41; // code_1 РїСѓСЃС‚РѕР№
 		}
 		if(code_2.isEmpty())
 		{
@@ -1393,7 +1393,7 @@ int DbInfologicalModel::insertRecord(UserType user, QChar type, int level, Categ
 		query.exec(str);
 		if(query.next())
 		{
-			// запись с таким кодом существует
+			// Р·Р°РїРёСЃСЊ СЃ С‚Р°РєРёРј РєРѕРґРѕРј СЃСѓС‰РµСЃС‚РІСѓРµС‚
 			return -6;
 		}
 		name = name.toLower().simplified();
@@ -1414,12 +1414,12 @@ int DbInfologicalModel::insertRecord(UserType user, QChar type, int level, Categ
 	}
 	else
 	{
-		// недопустимо для данного класса
+		// РЅРµРґРѕРїСѓСЃС‚РёРјРѕ РґР»СЏ РґР°РЅРЅРѕРіРѕ РєР»Р°СЃСЃР°
 		return -8;
 	}
 }
 
-// вставить ИСЕ инфлогического уровня на основе категории концептуального уровня
+// РІСЃС‚Р°РІРёС‚СЊ РРЎР• РёРЅС„Р»РѕРіРёС‡РµСЃРєРѕРіРѕ СѓСЂРѕРІРЅСЏ РЅР° РѕСЃРЅРѕРІРµ РєР°С‚РµРіРѕСЂРёРё РєРѕРЅС†РµРїС‚СѓР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 int DbInfologicalModel::insertRecord(UserType user, QChar type, int level, Category table, int idCategory)
 {
 	if(!isConnect())
@@ -1431,18 +1431,18 @@ int DbInfologicalModel::insertRecord(UserType user, QChar type, int level, Categ
 
 	if(!getTypes().values().contains(type))
 	{
-		return -2; // type недопустимый
+		return -2; // type РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№
 	}
 	if (level <= 0)
 	{
-		return -3; // level неверный
+		return -3; // level РЅРµРІРµСЂРЅС‹Р№
 	}
 	str = "SELECT code_group, code_in_group, extra_code, type FROM "+ nameTable[table] + " WHERE id = " + QString::number(idCategory) +
 		" AND confirm = " + QString::number(EXPERT);
 	record.exec(str);
 	if(!record.next())
 	{
-		// параметра с данным id не существует
+		// РїР°СЂР°РјРµС‚СЂР° СЃ РґР°РЅРЅС‹Рј id РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
 		return -4;
 	}
 	QString isType= record.value(3).toString();
@@ -1456,7 +1456,7 @@ int DbInfologicalModel::insertRecord(UserType user, QChar type, int level, Categ
 	query.exec(str);
 	if(query.next())
 	{
-		// запись с таким кодом существует
+		// Р·Р°РїРёСЃСЊ СЃ С‚Р°РєРёРј РєРѕРґРѕРј СЃСѓС‰РµСЃС‚РІСѓРµС‚
 		return -6;
 	}
 	if(user == EXPERT && !(table == PROCESSES || table == COMPONENTS) ||  isType.isEmpty())
@@ -1467,7 +1467,7 @@ int DbInfologicalModel::insertRecord(UserType user, QChar type, int level, Categ
 			" WHERE id = " +  QString::number(idCategory) +
 			" AND confirm = " + QString::number(EXPERT);
 	}
-	// для  PROCESS и COMPONENT могут повторятся концептуальные кода, значит необходимо создать новую запись
+	// РґР»СЏ  PROCESS Рё COMPONENT РјРѕРіСѓС‚ РїРѕРІС‚РѕСЂСЏС‚СЃСЏ РєРѕРЅС†РµРїС‚СѓР°Р»СЊРЅС‹Рµ РєРѕРґР°, Р·РЅР°С‡РёС‚ РЅРµРѕР±С…РѕРґРёРјРѕ СЃРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ Р·Р°РїРёСЃСЊ
 	else
 	{
 		str = "INSERT INTO " + nameTable[table] + " (confirm, type, level, name, code_group, code_in_group, extra_code)" 
@@ -1495,7 +1495,7 @@ int DbInfologicalModel::deleteRecord(QString id, Category table)
 	QChar c = id[0];
 	QList<Category> tablesForFind = nameTable.keys();
 	QSqlQueryModel *model = new QSqlQueryModel();
-	// поиск к какому классу(таблице) принадлежит код
+	// РїРѕРёСЃРє Рє РєР°РєРѕРјСѓ РєР»Р°СЃСЃСѓ(С‚Р°Р±Р»РёС†Рµ) РїСЂРёРЅР°РґР»РµР¶РёС‚ РєРѕРґ
 	foreach(Category var, tablesForFind)
 	{
 		if (c == var)
@@ -1505,7 +1505,7 @@ int DbInfologicalModel::deleteRecord(QString id, Category table)
 			break;
 		}
 	}
-	// если запись была создана  как новая на инфологическом уровне необходимо удалить полностью
+	// РµСЃР»Рё Р·Р°РїРёСЃСЊ Р±С‹Р»Р° СЃРѕР·РґР°РЅР°  РєР°Рє РЅРѕРІР°СЏ РЅР° РёРЅС„РѕР»РѕРіРёС‡РµСЃРєРѕРј СѓСЂРѕРІРЅРµ РЅРµРѕР±С…РѕРґРёРјРѕ СѓРґР°Р»РёС‚СЊ РїРѕР»РЅРѕСЃС‚СЊСЋ
 	str = "SELECT * FROM " + nameTable[table] + " WHERE code_group BETWEEN 0 AND 99 AND id = " + id;
 	query.exec(str);
 	QString er = query.lastError().text();
@@ -1521,7 +1521,7 @@ int DbInfologicalModel::deleteRecord(QString id, Category table)
 	return DbElementsOfStructure::deleteRecord(id, table);
 }
 
-// получить коды групп созданных единиц
+// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РіСЂСѓРїРї СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 QList<QPair<QString, QVariant>> DbInfologicalModel::getGroupCodes(Category table)
 {
 	QList<QPair<QString, QVariant>> result;
@@ -1555,13 +1555,13 @@ QList<QPair<QString, QVariant>> DbInfologicalModel::getGroupCodes(Category table
 		}
 		if(!isClassifier)
 		{
-			// для единиц без заданных классификационых кодов
+			// РґР»СЏ РµРґРёРЅРёС† Р±РµР· Р·Р°РґР°РЅРЅС‹С… РєР»Р°СЃСЃРёС„РёРєР°С†РёРѕРЅС‹С… РєРѕРґРѕРІ
 			result.push_back(qMakePair(codes.value(0).toString(),codes.value(0)) );
 		}
 	}
 	return result;
 }
-// получить коды в группе созданных единиц
+// РїРѕР»СѓС‡РёС‚СЊ РєРѕРґС‹ РІ РіСЂСѓРїРїРµ СЃРѕР·РґР°РЅРЅС‹С… РµРґРёРЅРёС†
 QList<QVariant> DbInfologicalModel::getInGroupCodes(QVariant codeGroup, Category table)
 {
 	QList<QVariant> resault;
@@ -1588,7 +1588,7 @@ QList<QVariant> DbInfologicalModel::getInGroupCodes(QVariant codeGroup, Category
 }
 
 
-// Поиск по коду
+// РџРѕРёСЃРє РїРѕ РєРѕРґСѓ
 QAbstractTableModel* DbInfologicalModel::findCode(QString code,  SearchType st)
 {
 	if(!isConnect())
@@ -1612,7 +1612,7 @@ QAbstractTableModel* DbInfologicalModel::findCode(QString code,  SearchType st)
 			" FROM " + nameTable[var] +
 			" WHERE confirm = " + QString::number(EXPERT) + " AND type IS NOT NULL AND code_group BETWEEN 0 AND 99 ";
 		int j = 2;
-		// цикл в два прохода для записей с особым кодом
+		// С†РёРєР» РІ РґРІР° РїСЂРѕС…РѕРґР° РґР»СЏ Р·Р°РїРёСЃРµР№ СЃ РѕСЃРѕР±С‹Рј РєРѕРґРѕРј
 		while(--j >= 0)
 		{
 			if (st == FULL)
@@ -1642,12 +1642,12 @@ QAbstractTableModel* DbInfologicalModel::findCode(QString code,  SearchType st)
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
-// Поиск с выбранным типом поиска (st) по классам, типам и уровню 
+// РџРѕРёСЃРє СЃ РІС‹Р±СЂР°РЅРЅС‹Рј С‚РёРїРѕРј РїРѕРёСЃРєР° (st) РїРѕ РєР»Р°СЃСЃР°Рј, С‚РёРїР°Рј Рё СѓСЂРѕРІРЅСЋ 
 QAbstractTableModel* DbInfologicalModel::findText(QString string, SearchType st, QList<Category> categories, QList<QChar> types, int level)
 {
 	if(!isConnect() || categories.isEmpty())
@@ -1668,7 +1668,7 @@ QAbstractTableModel* DbInfologicalModel::findText(QString string, SearchType st,
 			" FROM " + nameTable[var] +
 			" WHERE confirm = " + QString::number(EXPERT) + " AND type IS NOT NULL AND code_group BETWEEN 0 AND 99";
 		int j = 2;
-		// цикл в два прохода для записей с особым кодом
+		// С†РёРєР» РІ РґРІР° РїСЂРѕС…РѕРґР° РґР»СЏ Р·Р°РїРёСЃРµР№ СЃ РѕСЃРѕР±С‹Рј РєРѕРґРѕРј
 		while(--j >= 0)
 		{
 			if(level > 0)
@@ -1718,8 +1718,8 @@ QAbstractTableModel* DbInfologicalModel::findText(QString string, SearchType st,
 	}
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
 
@@ -1741,7 +1741,7 @@ QAbstractTableModel* DbInfologicalModel::findText(QString string, SearchType st,
 		" FROM " + nameTable[category] +
 		" WHERE confirm = " + QString::number(EXPERT) + " AND code_group BETWEEN 0 AND 99";
 	int j = 2;
-	// цикл в два прохода для записей с особым кодом
+	// С†РёРєР» РІ РґРІР° РїСЂРѕС…РѕРґР° РґР»СЏ Р·Р°РїРёСЃРµР№ СЃ РѕСЃРѕР±С‹Рј РєРѕРґРѕРј
 	while(--j >= 0)
 	{
 		if(level > 0)
@@ -1792,7 +1792,7 @@ QAbstractTableModel* DbInfologicalModel::findText(QString string, SearchType st,
 	}	
 	model->setQuery(str);
 	QString er = model->lastError().text();
-	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("Код"));	
-	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("Наименование"));
+	model->setHeaderData(1, Qt::Horizontal, QStringLiteral("РљРѕРґ"));	
+	model->setHeaderData(2, Qt::Horizontal, QStringLiteral("РќР°РёРјРµРЅРѕРІР°РЅРёРµ"));
 	return model;
 }
